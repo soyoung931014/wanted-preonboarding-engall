@@ -1,3 +1,4 @@
+import { queryDeleteSchedule } from '@src/api/reservation';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -35,11 +36,14 @@ export default function ScheduleCard({ id, start }: any) {
   if (endMinute.length === 1) {
     endMinute = '0' + String(endMinute);
   }
-
+  const { mutate } = queryDeleteSchedule(id);
+  const deleteCard = (id: any) => {
+    return mutate(id);
+  };
   return (
     <>
       <Container>
-        <Button onClick={() => console.log(id)}>x</Button>
+        <Button onClick={() => deleteCard(id)}>x</Button>
         <Schedule>
           <div>
             {startHours}:{startMinute} {amOrPm} -

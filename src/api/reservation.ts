@@ -28,11 +28,25 @@ export const checkReservation = async (
 // 스케쥴 리스트 받아오기
 export const fetchAllSchedule = async ({ queryKey }: any) => {
   const day = queryKey[1];
-  const response = await axios.get(`${BASE_URL}/schedules?day=${day}`);
+  const response = await axios.get(
+    `${BASE_URL}/schedules?day=${day}&_sort=time`,
+  );
   return response.data;
 };
 
 // 스케쥴 리스트 받아오기 (쿼리)
 export const QueryAllSchedule = (day: string) => {
   return useQuery(['schedule', day], fetchAllSchedule);
+};
+
+// 스케쥴 삭제하기
+export const deleteSchedule = async (id: number) => {
+  return await axios.delete(`${BASE_URL}/schedules?id=${id}`);
+};
+
+export const queryDeleteSchedule = (id: number) => {
+  const queryClient = useQueryClient();
+  return useMutation(deleteSchedule, {
+    onSuccess: () => queryClient.invalidateQueries('schedule'),
+  });
 };
