@@ -1,50 +1,72 @@
 import React from 'react';
 import styled from 'styled-components';
+// import { useRef } from 'react';
 
 export default function SelectTime({ handleChangeTime }: any) {
+  // const hoursRef = useRef(null);
+  // const minuteRef = useRef(null);
+  // const amRef = useRef(null);
+  // const pmRef = useRef(null);
+
+  const hoursOptions = [
+    '00',
+    '01',
+    '02',
+    '03',
+    '04',
+    '05',
+    '06',
+    '07',
+    '08',
+    '09',
+    '10',
+    '11',
+  ];
+  const minutesOptions = [
+    '00',
+    '05',
+    '10',
+    '15',
+    '20',
+    '25',
+    '30',
+    '35',
+    '40',
+    '45',
+    '50',
+    '55',
+  ];
   return (
     <>
       <Container>
         <Title>Start time</Title>
-        <div>
+        <div onChange={(e: any) => handleChangeTime(e)}>
           <Select
             name="hours"
-            onChange={(e: any) => handleChangeTime(e)}
-            required
+            //  ref={hoursRef}
           >
-            <option value="00">00</option>
-            <option value="01">01</option>
-            <option value="02">02</option>
-            <option value="03">03</option>
-            <option value="04">04</option>
-            <option value="05">05</option>
-            <option value="06">06</option>
-            <option value="07">07</option>
-            <option value="08">08</option>
-            <option value="09">09</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
+            {hoursOptions.map(el => (
+              <option value={el} key={el}>
+                {el}
+              </option>
+            ))}
           </Select>
           :
-          <Select name="minute" onChange={(e: any) => handleChangeTime(e)}>
-            <option>00</option>
-            <option>05</option>
-            <option>10</option>
-            <option>15</option>
-            <option>20</option>
-            <option>25</option>
-            <option>30</option>
-            <option>35</option>
-            <option>40</option>
-            <option>45</option>
-            <option>50</option>
-            <option>55</option>
+          <Select
+            name="minute"
+            //  ref={minuteRef}
+          >
+            {minutesOptions.map(el => (
+              <option value={el} key={el}>
+                {el}
+              </option>
+            ))}
           </Select>
           <Button
             name="AM"
             value="true"
             onClick={(e: any) => handleChangeTime(e)}
+            //  ref={amRef}
           >
             AM
           </Button>
@@ -52,6 +74,7 @@ export default function SelectTime({ handleChangeTime }: any) {
             name="AM"
             value="false"
             onClick={(e: any) => handleChangeTime(e)}
+            //  ref={pmRef}
           >
             PM
           </Button>

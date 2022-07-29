@@ -1,18 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function SelectDay() {
+export default function SelectDay({ handleDayofWeek }: any) {
   return (
     <Container>
       <Title>Repeat on</Title>
-      <DayBox>
-        <DayButton>Monday</DayButton>
-        <DayButton>Tuesday</DayButton>
-        <DayButton>Wednesday</DayButton>
-        <DayButton>Thursday</DayButton>
-        <DayButton>Friday</DayButton>
-        <DayButton>Saturday</DayButton>
-        <DayButton>Sunday</DayButton>
+      <DayBox onClick={e => handleDayofWeek(e)}>
+        <DayButton name="Mon">Monday</DayButton>
+        <DayButton name="Tue">Tuesday</DayButton>
+        <DayButton name="Wed">Wednesday</DayButton>
+        <DayButton name="Thu">Thursday</DayButton>
+        <DayButton name="Fri">Friday</DayButton>
+        <DayButton name="Sat">Saturday</DayButton>
+        <DayButton name="Sun">Sunday</DayButton>
       </DayBox>
     </Container>
   );
