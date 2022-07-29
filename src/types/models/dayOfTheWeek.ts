@@ -2,11 +2,10 @@ export interface IWeek {
   Sun: '0';
 }
 
-export interface info {
+export interface scheduleInfo {
   id: number;
-  day: findWeek;
-  start: 'string';
-  end: 'string';
+  day: string;
+  time: string;
 }
 
 export interface findWeek {
