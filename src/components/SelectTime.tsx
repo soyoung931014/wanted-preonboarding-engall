@@ -1,13 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-// import { useRef } from 'react';
 
 export default function SelectTime({ handleChangeTime }: any) {
-  // const hoursRef = useRef(null);
-  // const minuteRef = useRef(null);
-  // const amRef = useRef(null);
-  // const pmRef = useRef(null);
-
   const hoursOptions = [
     '00',
     '01',
@@ -41,10 +35,7 @@ export default function SelectTime({ handleChangeTime }: any) {
       <Container>
         <Title>Start time</Title>
         <div onChange={(e: any) => handleChangeTime(e)}>
-          <Select
-            name="hours"
-            //  ref={hoursRef}
-          >
+          <Select name="hours">
             {hoursOptions.map(el => (
               <option value={el} key={el}>
                 {el}
@@ -52,10 +43,7 @@ export default function SelectTime({ handleChangeTime }: any) {
             ))}
           </Select>
           :
-          <Select
-            name="minute"
-            //  ref={minuteRef}
-          >
+          <Select name="minute">
             {minutesOptions.map(el => (
               <option value={el} key={el}>
                 {el}
@@ -66,15 +54,14 @@ export default function SelectTime({ handleChangeTime }: any) {
             name="AM"
             value="true"
             onClick={(e: any) => handleChangeTime(e)}
-            //  ref={amRef}
           >
             AM
           </Button>
           <Button
+            Right
             name="AM"
             value="false"
             onClick={(e: any) => handleChangeTime(e)}
-            //  ref={pmRef}
           >
             PM
           </Button>
@@ -91,12 +78,22 @@ const Title = styled.div`
   width: 100px;
   font-size: 20px;
   font-weight: 600;
+  position: relative;
+  top: 4px;
 `;
 const Select = styled.select`
-  width: 100px;
-  font-size: 15px;
+  width: 56px;
+  font-size: 19px;
+  height: 30px;
+  border: solid 2px #b4b4b4;
 `;
-const Button = styled.button`
-  width: 100px;
-  margin-right: 30px;
+const Button = styled.button<{ Right?: any }>`
+  margin-left: ${props => (props.Right ? '5px' : '20px')};
+  width: 56px;
+  height: 30px;
+  font-size: 15px;
+  background-color: white;
+  border: solid 2px #b4b4b4;
+  position: relative;
+  top: -1px;
 `;
