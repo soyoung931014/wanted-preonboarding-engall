@@ -45,12 +45,12 @@ export default function ScheduleCard({ id, start }: any) {
       <Container>
         <Button onClick={() => deleteCard(id)}>x</Button>
         <Schedule>
-          <div>
+          <ScheduleTime>
             {startHours}:{startMinute} {amOrPm} -
-          </div>
-          <div>
+          </ScheduleTime>
+          <ScheduleTime>
             {endHours}:{endMinute} {amOrPm}
-          </div>
+          </ScheduleTime>
         </Schedule>
       </Container>
     </>
@@ -60,6 +60,11 @@ export default function ScheduleCard({ id, start }: any) {
 const Container = styled.div`
   background-color: #f4f4f4;
   border-radius: 10px;
+  margin-top: 30px;
+  &:hover {
+    box-shadow: 10px 10px 10px #3c4a5645;
+    border-bottom: #b1b0b0 solid 3px;
+  }
 `;
 
 const Schedule = styled.div`
@@ -72,4 +77,13 @@ const Button = styled.button`
   border-radius: 100%;
   position: relative;
   left: 120px;
+  &:hover {
+    background-color: #adadad;
+  }
+`;
+const ScheduleTime = styled.div`
+  color: #747474;
+  position: relative;
+  left: 10px;
+  font-size: 22px;
 `;
