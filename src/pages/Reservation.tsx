@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import SelectDay from '@src/components/SelectDay';
 import SelectTime from '@src/components/SelectTime';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { checkReservation } from '@src/api/reservation';
 
 type dayOfWeek = {
@@ -63,10 +62,17 @@ export default function Reservation() {
     }
     const end = start + 40;
     const findDayArray = findDayTrue(day);
-    console.log(findDayArray);
-    await checkReservation(start, end, findDayArray);
-    // gotoNotice;
+    //console.log(findDayArray);
+    const reservation = await checkReservation(start, end, findDayArray);
+    if (reservation !== undefined) {
+      const { message }: any = reservation;
+      if (message === 'post success') {
+        gotoNotice();
+        return;
+      }
+    }
   };
+
   function gotoNotice() {
     return navigate('/');
   }

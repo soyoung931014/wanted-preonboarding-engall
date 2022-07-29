@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { BASE_URL } from '@api/index';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export const checkReservation = async (
   start: number,
@@ -20,5 +21,6 @@ export const checkReservation = async (
   const post = await axios.post(`${BASE_URL}/schedules`, ...data);
   if (post.status === 201) {
     alert('예약되었습니다.');
+    return { message: 'post success' };
   }
 };
