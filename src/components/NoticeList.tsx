@@ -15,6 +15,7 @@ export default function NoticeList() {
   return (
     <>
       <Container>
+        <Div></Div>
         <DayBox>
           <Day>
             <DaySchedule day="Monday" scheduleList={mon} />
@@ -38,15 +39,18 @@ export default function NoticeList() {
             <DaySchedule day="Sunday" scheduleList={sun} />
           </Day>
         </DayBox>
-        <div>스케쥴</div>
       </Container>
     </>
   );
 }
 const Container = styled.div``;
+const Div = styled.div`
+  border-bottom: solid #b4b4b4 2px;
+  position: relative;
+  bottom: -35px;
+`;
 const DayBox = styled.div`
   display: flex;
-  border-bottom: solid black 1px;
   justify-content: space-around;
 `;
 const Day = styled.div`
