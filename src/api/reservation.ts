@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { BASE_URL } from '@api/index';
-import { Navigate, useNavigate } from 'react-router-dom';
 
+// 스케쥴 예약 체크 & 예약 전송
 export const checkReservation = async (
   start: number,
   end: number,
@@ -23,4 +23,16 @@ export const checkReservation = async (
     alert('예약되었습니다.');
     return { message: 'post success' };
   }
+};
+
+// 스케쥴 리스트 받아오기
+export const fetchAllSchedule = async ({ queryKey }: any) => {
+  const day = queryKey[1];
+  const response = await axios.get(`${BASE_URL}/schedules?day=${day}`);
+  return response.data;
+};
+
+// 스케쥴 리스트 받아오기 (쿼리)
+export const QueryAllSchedule = (day: string) => {
+  return useQuery(['schedule', day], fetchAllSchedule);
 };
