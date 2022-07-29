@@ -13,12 +13,6 @@ type dayOfWeek = {
 export default function Reservation() {
   const navigate = useNavigate();
 
-  //서버에 보낼 정보
-  const [registeration, setRegisteration] = useState({
-    day: '',
-    time: '',
-  });
-
   // 임시로 시간 담는 부분
   const [collectTime, setCollectTime] = useState({
     hours: 0,
@@ -45,7 +39,6 @@ export default function Reservation() {
     }
     setCollectTime({ ...collectTime, [e.target.name]: Number(e.target.value) });
   };
-  console.log(collectTime, 'collectTime');
 
   // 요일 선택하는 부분
   const handleDayofWeek = (e: dayOfWeek) => {
@@ -62,7 +55,7 @@ export default function Reservation() {
     }
     const end = start + 40;
     const findDayArray = findDayTrue(day);
-    //console.log(findDayArray);
+
     const reservation = await checkReservation(start, end, findDayArray);
     if (reservation !== undefined) {
       const { message }: any = reservation;
@@ -90,8 +83,10 @@ export default function Reservation() {
   return (
     <>
       <Container>
-        <Title>Add class schedule</Title>
-        <div>
+        <FirstSection>
+          <Title>Add class schedule</Title>
+        </FirstSection>
+        <SecondSection>
           <SelectDate>
             <SelectTime
               handleChangeTime={handleChangeTime}
@@ -99,25 +94,52 @@ export default function Reservation() {
             />
             <SelectDay handleDayofWeek={handleDayofWeek} />
           </SelectDate>
-        </div>
-        <Button onClick={TryRegisteration}>Save</Button>
-        <Button onClick={() => navigate('/')}>게시판</Button>
+        </SecondSection>
+        <ButtonContainer>
+          <div></div>
+          <Button onClick={TryRegisteration}>Save</Button>
+        </ButtonContainer>
       </Container>
     </>
   );
 }
-const Container = styled.div``;
-const Title = styled.h1`
-  font-size: 30px;
-  font-weight: 600;
-  margin-bottom: 10px;
+const Container = styled.div`
+  margin-right: 20px;
+  margin-left: 20px;
+`;
+const FirstSection = styled.div`
+  display: flex;
+  height: 140px;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 10px;
+  margin-left: 10px;
+`;
+const SecondSection = styled.div`
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: white;
+  margin-top: 15px;
+  padding: 30px;
+  box-shadow: 10px 10px 10px #3c4a5645;
+`;
+const Title = styled.div`
+  margin-left: 10px;
+  font-size: 35px;
+  font-weight: 650;
 `;
 const SelectDate = styled.div``;
 const Button = styled.button`
-  width: 70px;
+  width: 250px;
   height: 50px;
   font-size: 20px;
   margin: 10px;
   background-color: ${({ theme }) => theme.color.buttonColor};
   color: white;
+  border-radius: 10px;
+  margin-top: 15px;
+`;
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
