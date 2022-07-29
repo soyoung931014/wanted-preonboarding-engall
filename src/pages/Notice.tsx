@@ -1,3 +1,4 @@
+import { QueryAllSchedule } from '@src/api/reservation';
 import NoticeList from '@src/components/NoticeList';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -5,6 +6,7 @@ import styled from 'styled-components';
 
 export default function Notice() {
   const navigate = useNavigate();
+
   return (
     <Container>
       <FirstSection>
